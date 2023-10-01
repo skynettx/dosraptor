@@ -1,0 +1,21 @@
+
+main() = 4626536
+Init -
+Shareware EXE!
+Music Enabled (Roland Sound Canvas)
+SoundFx Enabled (Sound Blaster)
+DMX_Init() = 24
+
+CENTER Joystick and press a button
+PUSH the Joystick in the UPPER LEFT and press a button
+PUSH the Joystick in the LOWER RIGHT and press a button
+INPUT xh = 342    xl = 12
+INPUT yh = 410    yl = 12
+LIMIT xh = 11    xl = -77
+LIMIT yh = 12    yl = -91
+CENTER sx = 398    sy = 471
+
+_dpmi_getmemsize() = 3112960
+Lowmem = 431408
+Highmem = 3096576
+Loading Graphics

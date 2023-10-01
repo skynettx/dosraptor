@@ -1,0 +1,139 @@
+WATCOM Execution Profiler Version 1.2
+Copyright by WATCOM Systems Inc. 1989, 1992.  All rights reserved.
+WATCOM is a trademark of WATCOM Systems Inc.
+
+Listing Created: Thu Jul 08 00:06:22 1993
+Sample File:     D:\LEATHAL\TEST.SMP
+Executable File: D:\LEATHAL\ld.exe
+
+Number of samples:             1020
+Start of time range:              0.000
+End of time range:               55.988
+Duration of time range:          55.988
+
+Total number of samples:       1020
+Total execution time:            55.988
+
+                                  +---------+
+                                  | Modules |
+                                  +---------+
+
+                              M = module histogram
+
+                   Name   Samples Abs% Histogram
+                   ====   ======= ==== =========
+
+                   read       373  36% MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+            OS/EXTERNAL       160  15% MMMMMMMMMMMMMMMMM
+                 gfxapi       142  13% MMMMMMMMMMMMMMM
+                 swdapi       130  12% MMMMMMMMMMMMM
+                  store        82   8% MMMMMMMM
+                     ld        55   5% MMMMM
+                segread        16   1% M
+                 ptrapi        16   1% M
+                 musapi         9   0% M
+                 tsmapi         6   0% M
+                  close         5   0% M
+                  intro         5   0% M
+                  lseek         5   0% M
+                   open         4   0% M
+                  shots         3   0% M
+                 emu387         2   0% M
+                 tsmapi         2   0% M
+               grownear         1   0% M
+                sbrk386         1   0% M
+               int386xa         1   0% M
+                dpmiapi         1   0% M
+               ptrapi_a         1   0% M
+
+                            +----------------------+
+                            | Modules and Routines |
+                            +----------------------+
+
+                  M = module histogram   R = routine histogram
+
+                   Name   Samples Abs% Histogram
+                   ====   ======= ==== =========
+
+Module:            read       373  36% MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+                  read_       373  36% RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+
+Module:     OS/EXTERNAL       160  15% MMMMMMMMMMMMMMMMM
+
+Module:          gfxapi       142  13% MMMMMMMMMMMMMMM
+          GFX_ScalePic_         2   0% R
+        GFX_MarkUpdate_        85   8% RRRRRRRRR
+       GFX_ForceUpdate_        25   2% RR
+        GFX_WaitUpdate_         1   0% R
+         GFX_PutSprite_         7   0% R
+      GFX_OverlayImage_         7   0% R
+       GFX_StrPixelLen_        15   1% R
+
+Module:          swdapi       130  12% MMMMMMMMMMMMM
+         UNKNOWN 1:71D8       130  12% RRRRRRRRRRRRR
+
+Module:           store        82   8% MMMMMMMM
+            STORE_Init_        82   8% RRRRRRRR
+
+Module:              ld        55   5% MMMMM
+        MERC_DrawTiles_        10   0% R
+     MERC_DisplayStats_        12   1% R
+             Rot_Color_         1   0% R
+              MoveMobj_        21   2% RR
+              TimeLoop_        11   1% R
+
+Module:         segread        16   1% M
+               segread_        16   1% R
+
+Module:          ptrapi        16   1% M
+        PTR_JoyHandler_         1   0% R
+      PTR_UpdateCursor_         1   0% R
+         PTR_InitMouse_        11   1% R
+               PTR_End_         3   0% R
+
+Module:          musapi         9   0% M
+        MUS_RampVolume_         4   0% R
+              MUS_Init_         3   0% R
+            MUS_DeInit_         2   0% R
+
+Module:          tsmapi         6   0% M
+        TSM_NewService_         1   0% R
+        TSM_ResetCount_         5   0% R
+
+Module:           close         5   0% M
+                 close_         5   0% R
+
+Module:           intro         5   0% M
+           INTRO_Death_         5   0% R
+
+Module:           lseek         5   0% M
+                 lseek_         5   0% R
+
+Module:            open         4   0% M
+                 sopen_         3   0% R
+          __set_binary_         1   0% R
+
+Module:           shots         3   0% M
+     SHOTS_PlayerShoot_         3   0% R
+
+Module:          emu387         2   0% M
+                 __int7         2   0% R
+
+Module:          tsmapi         2   0% M
+           TSM_Service_         2   0% R
+
+Module:        grownear         1   0% M
+        __ExpandDGROUP_         1   0% R
+
+Module:         sbrk386         1   0% M
+                 __brk_         1   0% R
+
+Module:        int386xa         1   0% M
+               _DoINTR_         1   0% R
+
+Module:         dpmiapi         1   0% M
+    _dpmi_unlockregion_         1   0% R
+
+Module:        ptrapi_a         1   0% M
+         _PTR_ClipErase         1   0% R
+

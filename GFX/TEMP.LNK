@@ -1,0 +1,13 @@
+-+vmemapi.obj
+-+prefapi.obj
+-+dpmiapi.obj
+-+ptrapi.obj
+-+gfxapi_a.obj
+-+gfxapi.obj
+-+exitapi.obj
+-+glbapi.obj
+-+imsapi.obj
+-+kbdapi.obj
+-+swdapi.obj
+-+tsmapi.obj
+-+ptrapi_a.obj

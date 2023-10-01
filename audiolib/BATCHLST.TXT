@@ -1,0 +1,6 @@
+[1] Apogee Sound System 1.04 (Watcom 10.0b)
+[2] Apogee Sound System 1.09 (Watcom 10.0b)
+[3] Apogee Sound System 1.1 (Watcom 10.0b)
+
+[0] Cancel and quit
+

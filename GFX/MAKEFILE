@@ -1,0 +1,50 @@
+# GFX Library makefile
+
+# --------------------------------------------------------------------------
+#
+#      4r  use 80486 timings and register argument passing
+#       c  compile only
+#      d1  include line number debugging information
+#      d2  include full sybolic debugging information
+#      ei  force enums to be of type int
+#       j  change char default from unsigned to signed
+#      oa  relax aliasing checking
+#      od  do not optimize
+#  oe[=#]  expand functions inline, # = quads (default 20)
+#      oi  use the inline library functions
+#      om  generate inline 80x87 code for math functions
+#      ot  optimize for time
+#      ox  maximum optimization
+#       s  remove stack overflow checks
+#     zp1  align structures on bytes
+#      zq  use quiet mode
+#  /i=dir  add include directories
+#
+# --------------------------------------------------------------------------
+
+CCOPTS = /d2 /omaxet /zp1 /4r /ei /j /zq
+ASM = tasm
+AFLAGS  = -mx -ml
+
+.BEFORE
+ @set INCLUDE=.;$(%watcom)\h;..\apodmx;
+ 
+!include objdef.mif
+
+gfx.lib : $(OBJS)
+ %make temp.lnk 
+ wlib $^@ /n /b @temp.lnk 
+
+temp.lnk: objdef.mif makefile 
+        %create $^@
+        for %i in ($(objs)) do %append $^@ -+%i
+
+.c.obj :
+ wcc386 $(CCOPTS) $[*
+
+.asm.obj :
+ $(ASM) $(AFLAGS) $^&;
+
+clean : .SYMBOLIC
+ del *.obj
+ 

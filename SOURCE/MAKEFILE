@@ -1,0 +1,74 @@
+#  Makefile for Makeing a Library
+
+#which memory model and processor to use by default
+PROCESSOR = 386 # for the 32-bit compilers
+
+# name the compiler
+CC = wcc$(PROCESSOR)
+FC = wfc$(PROCESSOR)
+ASM = tasm
+
+!ifeq PROCESSOR 386
+MODEL = f       # flat
+!else
+MODEL = l       # large
+!endif
+
+# options to use
+#CFLAGS = -m$(MODEL) -zq -od -d2 -zp4 -ei -W4  
+#CFLAGS  = -m$(MODEL) -zq -s -oxt -zp4 -ei -W4 
+CFLAGS = -m$(MODEL) -zq -od -s -zp4 -ei -W4  
+FFLAGS  = -m$(MODEL) -noterm
+AFLAGS  = -mx -ml
+
+.EXTENSIONS:
+.EXTENSIONS: .exe .rex .lib .obj .wbj .asm .c .for
+
+.BEFORE
+	@set INCLUDE=.;$(%watcom)\h;..\apodmx;..\gfx;
+	@set LIB=..\apodmx;..\gfx;
+	@set DOS4G=QUIET                      
+
+!include objdef.mif
+
+# explicit rules
+
+all :   rap.exe .symbolic
+	@%null
+
+rap.exe : $(objs)
+	 %make temp.lnk    
+	 wlink @temp.lnk
+
+# implicit rules
+
+temp.lnk : objdef.mif makefile
+	%create $^@
+	%append $^@ NAME rap
+	%append $^@ DEBUG all
+	%append $^@ OPT MAP=test.map
+	%append $^@ OPT STACK=8192
+	%append $^@ OPT CASEEXACT
+	%append $^@ LIBRARY APODMX.lib
+        %append $^@ LIBRARY AL_109.lib 
+	%append $^@ LIBRARY GFX.LIB 
+	%append $^@ LIB NOEMU387.LIB 
+	%append $^@ SYSTEM dos4g
+	for %i in ($(objs)) do %append $^@ FILE %i
+
+.c.obj :
+	$(CC) $^& $(CFLAGS)
+
+.c.wbj :
+	$(CC) $^& $(CFLAGS) -zw -fo=$^&.wbj
+
+.for.obj :
+	$(FC) $^& $(FFLAGS)
+
+.asm.obj :
+	$(ASM) $(AFLAGS) $^&;
+
+# clean build DIR
+
+clean : .SYMBOLIC
+        del *.obj

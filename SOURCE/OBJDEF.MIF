@@ -1,0 +1,23 @@
+
+OBJS    =       rap.obj &
+                tile.obj  &
+                shots.obj &
+                eshot.obj &
+                shadows.obj &
+                enemy.obj &
+                flame.obj &
+                objects.obj &
+                bonus.obj &
+                fx.obj &
+                input.obj &
+                anims.obj &
+                movie.obj &
+                store.obj &
+                intro.obj &
+                loadsave.obj &
+                help.obj &
+                windows.obj &
+                tile_a.obj &
+                movie_a.obj 
+
+
