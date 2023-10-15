@@ -1,50 +1,65 @@
-# GFX Library makefile
+#  Makefile for Makeing a Library
 
-# --------------------------------------------------------------------------
-#
-#      4r  use 80486 timings and register argument passing
-#       c  compile only
-#      d1  include line number debugging information
-#      d2  include full sybolic debugging information
-#      ei  force enums to be of type int
-#       j  change char default from unsigned to signed
-#      oa  relax aliasing checking
-#      od  do not optimize
-#  oe[=#]  expand functions inline, # = quads (default 20)
-#      oi  use the inline library functions
-#      om  generate inline 80x87 code for math functions
-#      ot  optimize for time
-#      ox  maximum optimization
-#       s  remove stack overflow checks
-#     zp1  align structures on bytes
-#      zq  use quiet mode
-#  /i=dir  add include directories
-#
-# --------------------------------------------------------------------------
+#which memory model and processor to use by default
+PROCESSOR = 386 # for the 32-bit compilers
 
-CCOPTS = /d2 /omaxet /zp1 /4r /ei /j /zq
+# name the compiler
+CC = wcc$(PROCESSOR)
+FC = wfc$(PROCESSOR)
 ASM = tasm
+
+!ifeq PROCESSOR 386
+MODEL = f       # flat
+!else
+MODEL = l       # large
+!endif
+
+# options to use
+#CFLAGS = -m$(MODEL) -zq -od -d2 -zp4 -ei -W4
+CFLAGS  = -m$(MODEL) -zq -s -oxt -zp4 -ei -W4
+#CFLAGS = -m$(MODEL) -zq -od -s -zp4 -ei -W4
+FFLAGS  = -m$(MODEL) -noterm
 AFLAGS  = -mx -ml
 
+.EXTENSIONS:
+.EXTENSIONS: .exe .rex .lib .obj .wbj .asm .c .for
+
 .BEFORE
- @set INCLUDE=.;$(%watcom)\h;..\apodmx;
- 
+	@set INCLUDE=..\apodmx;.;$(%watcom)\h;
+	@set LIB=$(%watcom)\lib386;$(%lib)
+	@set DOS4G=QUIET
+
 !include objdef.mif
 
-gfx.lib : $(OBJS)
- %make temp.lnk 
- wlib $^@ /n /b @temp.lnk 
+# explicit rules
 
-temp.lnk: objdef.mif makefile 
-        %create $^@
-        for %i in ($(objs)) do %append $^@ -+%i
+all :   gfx.lib .symbolic
+	@%null
+
+gfx.lib : $(objs)
+	 %make temp.lnk
+	 wlib $^@ /n /b @temp.lnk
+
+rap.exe : $(objs)
+	 %make temp.lnk
+	 wlink @temp.lnk
+
+# implicit rules
+
+temp.lnk : objdef.mif makefile
+	%create $^@
+	for %i in ($(objs)) do %append $^@ -+%i
 
 .c.obj :
- wcc386 $(CCOPTS) $[*
+	$(CC) $^& $(CFLAGS)
+
+.c.wbj :
+	$(CC) $^& $(CFLAGS) -zw -fo=$^&.wbj
+
+.for.obj :
+	$(FC) $^& $(FFLAGS)
 
 .asm.obj :
- $(ASM) $(AFLAGS) $^&;
+	$(ASM) $(AFLAGS) $^&;
 
-clean : .SYMBOLIC
- del *.obj
- 
+
