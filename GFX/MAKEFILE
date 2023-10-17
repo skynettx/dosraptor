@@ -62,4 +62,8 @@ temp.lnk : objdef.mif makefile
 .asm.obj :
 	$(ASM) $(AFLAGS) $^&;
 
-
+# clean build DIR
+
+clean : .SYMBOLIC
+        del *.obj
+        del *.lib
