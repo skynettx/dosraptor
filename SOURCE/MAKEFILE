@@ -26,7 +26,7 @@ AFLAGS  = -mx -ml
 
 .BEFORE
 	@set INCLUDE=.;$(%watcom)\h;..\apodmx;..\gfx;
-	@set LIB=..\apodmx;..\gfx;
+	@set LIB=..\apodmx;..\gfx;..\audiolib\AL_109;
 	@set DOS4G=QUIET                      
 
 !include objdef.mif
@@ -72,3 +72,4 @@ temp.lnk : objdef.mif makefile
 
 clean : .SYMBOLIC
         del *.obj
+        del *.exe
