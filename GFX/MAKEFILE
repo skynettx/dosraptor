@@ -40,10 +40,6 @@ gfx.lib : $(objs)
 	 %make temp.lnk
 	 wlib $^@ /n /b @temp.lnk
 
-rap.exe : $(objs)
-	 %make temp.lnk
-	 wlink @temp.lnk
-
 # implicit rules
 
 temp.lnk : objdef.mif makefile
